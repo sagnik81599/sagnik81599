@@ -49,26 +49,6 @@
 
 ---
 
-## 🚀 Featured Projects
-
-### 📚 StudySphere – Learning Platform
-A learning platform where students can access notes, quizzes and educational resources.
-
-**Tech:** HTML, CSS, Bootstrap, JavaScript, PHP, MySQL
-
-### 📝 Notes Marketplace
-A platform for students to buy and sell digital notes.
-
-**Tech:** PHP, MySQL, HTML, CSS, JavaScript
-
-### ⚛️ React Learning
-A collection of React projects and practice components covering hooks, routing,
-localStorage and modern React concepts.
-
-**Tech:** React, JavaScript, Vite
-
----
-
 ## 💻 Programming Languages
 
 <p>
@@ -112,16 +92,6 @@ localStorage and modern React concepts.
 <img src="https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white">
 </a>
 </p>
-
----
-
-## ⚡ Fun Fact
-
-> I enjoy building web applications and solving programming problems 🚀
-
----
-
-⭐ From [Sagnik Saha](https://github.com/sagnik81599)
 
 <!--
 **sagnik81599/sagnik81599** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.

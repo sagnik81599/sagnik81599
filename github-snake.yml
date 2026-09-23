@@ -14,10 +14,11 @@ permissions:
 jobs:
   generate:
     runs-on: ubuntu-latest
+
     steps:
       - uses: Platane/snk/svg-only@v3
         with:
-          github_user_name: ${{ github.repository_owner }}
+          github_user_name: sagnik81599
           outputs: |
             dist/github-snake.svg
             dist/github-snake-dark.svg?palette=github-dark

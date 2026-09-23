@@ -47,10 +47,16 @@ I'm an MCA student at **Lovely Professional University** who likes turning ideas
 
 ## LeetCode
 
-<div align="center">
-<a href="https://leetcode.com/u/YOUR-LEETCODE-USERNAME/"><img src="./leetcode.svg" alt="LeetCode stats: problems solved and recent submissions" width="100%" /></a>
-</div>
 
+
+<p align="center">
+  <a href="https://leetcode.com/">
+    <img
+      src="https://leetcard.jacoblin.cool/sagnik81599?theme=dark&font=Karma&ext=heatmap"
+      alt="LeetCode Stats"
+    />
+  </a>
+</p>
 ---
 
 ## Tech stack

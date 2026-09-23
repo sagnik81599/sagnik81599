@@ -1,0 +1,175 @@
+#!/usr/bin/env python3
+"""Fetch public LeetCode stats and write a self-hosted SVG card (leetcode.svg).
+
+Usage:
+    LEETCODE_USERNAME=your-name python3 scripts/leetcode_card.py
+    python3 scripts/leetcode_card.py --placeholder      # card without live data
+"""
+import html
+import json
+import math
+import os
+import sys
+import textwrap
+import time
+import urllib.request
+
+USERNAME = os.environ.get("LEETCODE_USERNAME", "").strip()
+OUTPUT = os.environ.get("OUTPUT_PATH", "leetcode.svg")
+
+PAPER, INK, MUTED, LINE = "#FAFAFA", "#3A3D42", "#6B7078", "#E4E4E9"
+TEAL, GOLD, VIOLET = "#3F97A5", "#BBA340", "#6C52D9"
+FONT = "'Poppins','Segoe UI',Helvetica,Arial,sans-serif"
+
+QUERY = """
+query userProfile($username: String!) {
+  allQuestionsCount { difficulty count }
+  matchedUser(username: $username) {
+    profile { ranking }
+    submitStatsGlobal { acSubmissionNum { difficulty count } }
+  }
+  recentAcSubmissionList(username: $username, limit: 5) { title timestamp }
+  userContestRanking(username: $username) { rating }
+}
+"""
+
+
+def fetch(username):
+    body = json.dumps({"query": QUERY, "variables": {"username": username}}).encode()
+    req = urllib.request.Request(
+        "https://leetcode.com/graphql",
+        data=body,
+        headers={
+            "Content-Type": "application/json",
+            "Referer": "https://leetcode.com",
+            "User-Agent": "Mozilla/5.0 (profile-readme-card)",
+        },
+    )
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        payload = json.load(resp)
+    data = payload.get("data") or {}
+    if not data.get("matchedUser"):
+        raise SystemExit(f"LeetCode user '{username}' was not found or the profile is private.")
+    return data
+
+
+def parse(data):
+    solved = {x["difficulty"]: x["count"] for x in data["matchedUser"]["submitStatsGlobal"]["acSubmissionNum"]}
+    total = {x["difficulty"]: x["count"] for x in data["allQuestionsCount"]}
+    contest = data.get("userContestRanking") or {}
+    return {
+        "solved": {k: solved.get(k, 0) for k in ("All", "Easy", "Medium", "Hard")},
+        "total": {k: total.get(k, 0) for k in ("All", "Easy", "Medium", "Hard")},
+        "rank": data["matchedUser"]["profile"].get("ranking"),
+        "rating": round(contest["rating"]) if contest.get("rating") else None,
+        "recent": [(r["title"], int(r["timestamp"])) for r in (data.get("recentAcSubmissionList") or [])],
+    }
+
+
+def ago(ts):
+    days = int((time.time() - ts) // 86400)
+    if days <= 0:
+        return "today"
+    if days == 1:
+        return "1 day ago"
+    if days < 30:
+        return f"{days} days ago"
+    months = days // 30
+    return f"{months} month{'s' if months > 1 else ''} ago"
+
+
+def clip(text, n=26):
+    return text if len(text) <= n else text[: n - 1] + "…"
+
+
+def render(stats, username, note=None):
+    e = html.escape
+    solved, total = stats["solved"], stats["total"]
+    r, circ = 56, 2 * math.pi * 56
+    frac = solved["All"] / total["All"] if total["All"] else 0
+    arc = max(frac * circ, 2 if solved["All"] else 0)
+
+    meta = []
+    if stats.get("rank"):
+        meta.append(f"Global rank {stats['rank']:,}")
+    if stats.get("rating"):
+        meta.append(f"Contest rating {stats['rating']:,}")
+    meta_text = "   ·   ".join(meta)
+
+    ring = ""
+    if solved["All"]:
+        ring = (
+            f'<circle cx="120" cy="184" r="{r}" fill="none" stroke="{TEAL}" stroke-width="12" '
+            f'stroke-linecap="round" stroke-dasharray="{arc:.1f} {circ:.1f}" transform="rotate(-90 120 184)"/>'
+        )
+
+    bars = ""
+    for i, (name, color) in enumerate((("Easy", TEAL), ("Medium", GOLD), ("Hard", VIOLET))):
+        y = 128 + i * 52
+        n, t = solved[name], total[name]
+        w = 0 if not t else max(270 * n / t, 5 if n else 0)
+        bars += (
+            f'<text x="236" y="{y}" font-size="14" font-weight="500" fill="{INK}">{name}</text>'
+            f'<text x="506" y="{y}" font-size="13" fill="{MUTED}" text-anchor="end">{n:,} / {t:,}</text>'
+            f'<rect x="236" y="{y + 10}" width="270" height="8" rx="4" fill="#E9EAEE"/>'
+            f'<rect x="236" y="{y + 10}" width="{w:.1f}" height="8" rx="4" fill="{color}"/>'
+        )
+
+    if note:
+        recent = "".join(
+            f'<text x="574" y="{150 + i * 22}" font-size="13" fill="{MUTED}">{e(line)}</text>'
+            for i, line in enumerate(textwrap.wrap(note, 36))
+        )
+    elif stats["recent"]:
+        recent = ""
+        for i, (title, ts) in enumerate(stats["recent"][:5]):
+            y = 150 + i * 30
+            recent += (
+                f'<circle cx="580" cy="{y - 5}" r="3.5" fill="{TEAL}"/>'
+                f'<text x="594" y="{y}" font-size="13.5" fill="{INK}">{e(clip(title))}</text>'
+                f'<text x="860" y="{y}" font-size="12" fill="{MUTED}" text-anchor="end">{ago(ts)}</text>'
+            )
+    else:
+        recent = f'<text x="574" y="150" font-size="13" fill="{MUTED}">No accepted submissions yet.</text>'
+
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="900" height="310" viewBox="0 0 900 310" role="img" aria-label="LeetCode stats for {e(username)}">
+<rect x="0.5" y="0.5" width="899" height="309" rx="16" fill="{PAPER}" stroke="{LINE}"/>
+<g font-family="{FONT}">
+<text x="40" y="52" font-size="22" font-weight="600" fill="{INK}">LeetCode</text>
+<text x="40" y="74" font-size="13" fill="{TEAL}">@{e(username)}</text>
+<text x="860" y="52" font-size="13" fill="{MUTED}" text-anchor="end">{e(meta_text)}</text>
+<circle cx="120" cy="184" r="{r}" fill="none" stroke="#E9EAEE" stroke-width="12"/>
+{ring}
+<text x="120" y="188" font-size="30" font-weight="600" fill="{INK}" text-anchor="middle">{solved["All"]:,}</text>
+<text x="120" y="208" font-size="12" fill="{MUTED}" text-anchor="middle">solved</text>
+<text x="120" y="262" font-size="12" fill="{MUTED}" text-anchor="middle">of {total["All"]:,} problems</text>
+{bars}
+<line x1="540" y1="96" x2="540" y2="280" stroke="{LINE}"/>
+<text x="574" y="112" font-size="14" font-weight="600" fill="{INK}">Recently solved</text>
+{recent}
+</g>
+</svg>
+'''
+
+
+def main():
+    if "--placeholder" in sys.argv:
+        stats = {
+            "solved": {"All": 0, "Easy": 0, "Medium": 0, "Hard": 0},
+            "total": {"All": 3800, "Easy": 900, "Medium": 1900, "Hard": 850},
+            "rank": None,
+            "rating": None,
+            "recent": [],
+        }
+        svg = render(stats, USERNAME or "your-username", note="Run the “Update LeetCode card” workflow to load your stats.")
+    else:
+        if not USERNAME:
+            raise SystemExit("Set LEETCODE_USERNAME first.")
+        svg = render(parse(fetch(USERNAME)), USERNAME)
+    with open(OUTPUT, "w", encoding="utf-8") as f:
+        f.write(svg)
+    print(f"Wrote {OUTPUT}")
+
+
+if __name__ == "__main__":
+    main()

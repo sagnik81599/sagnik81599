@@ -47,12 +47,10 @@ I'm an MCA student at **Lovely Professional University** who likes turning ideas
 
 ## LeetCode
 
-
-
 <p align="center">
-  <a href="https://leetcode.com/">
+  <a href="https://leetcode.com/u/saggy_04/">
     <img
-      src="https://leetcard.jacoblin.cool/sagnik81599?theme=dark&font=Karma&ext=heatmap"
+      src="https://leetcard.jacoblin.cool/saggy_04?theme=dark&font=Karma&ext=heatmap"
       alt="LeetCode Stats"
     />
   </a>

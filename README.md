@@ -67,20 +67,50 @@
 
 <table width="100%">
 <tr>
-<td width="50%" align="center">
-  <a href="https://github.com/sagnik81599/studysphere">
-    <img src="./project-studysphere.svg" alt="StudySphere Learning Platform" width="100%" />
-  </a>
+<td width="50%" valign="top">
+
+### 📚 StudySphere Learning Platform
+> *Interactive Web-Based Education & Testing Platform*
+
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" />
+<img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white" />
+<img src="https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white" />
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white" />
+
+<br/><br/>
+
+- **Subject Notes Hub:** Browse, preview, and download subject-wise PDF notes.
+- **Timed Quizzes:** Interactive test module with automated scoring and performance metrics.
+- **Gamification:** Competitive student leaderboard and integrated video tutorials.
+- **Secure Database:** Robust MySQL backend for student records and file management.
+
+<br/>
+
+🔗 **[Explore Repository →](https://github.com/sagnik81599/studysphere)**
+
 </td>
-<td width="50%" align="center">
-  <a href="https://github.com/sagnik81599/My-Portfolio">
-    <img src="./project-portfolio.svg" alt="Personal Portfolio Website" width="100%" />
-  </a>
+<td width="50%" valign="top">
+
+### 🌐 Personal Portfolio Website
+> *3D Animated Interactive Developer Portfolio*
+
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" />
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" />
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
+
+<br/><br/>
+
+- **3D Hero Banner:** Dynamic typing intro paired with 3D cosmic background.
+- **Project Showcase:** Comprehensive gallery of projects, tech stack, and interactive CV download.
+- **Responsive Design:** Mobile-first layout with smooth transitions and theme support.
+
+<br/><br/>
+
+🔗 **[Explore Repository →](https://github.com/sagnik81599/My-Portfolio)**
+
 </td>
 </tr>
 </table>
-
----
 
 ### 📊 Contributions & Problem Solving
 

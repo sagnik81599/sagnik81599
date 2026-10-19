@@ -18,7 +18,7 @@
   <a href="https://leetcode.com/u/saggy_04/" target="_blank">
     <img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=white" alt="LeetCode" />
   </a>
-  <a href="mailto:your-email@gmail.com">
+  <a href="mailto:sagniksaha847@gmail.com">
     <img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
   </a>
   <a href="https://github.com/sagnik81599/My-Portfolio" target="_blank">

@@ -70,26 +70,43 @@
 <td width="50%" valign="top">
 
 ### 📚 StudySphere Learning Platform
-A responsive educational platform enabling students to access, view, and download subject-wise notes, take tests, and earn digital certificates.
+> *Interactive Web-Based Education & Testing Platform*
 
-- **Stack:** HTML5, JavaScript, Bootstrap, PHP, MySQL
-- • Developed a responsive platform enabling students to access, view, and download subject-wise notes, take tests, and earn digital certificates.
-- • Created a Test module with timed quizzes, auto-scoring, and performance tracking.
-- • Added leaderboard functionality and YouTube video links to support learning.
-- - 🔗 **[Explore Repository →](https://github.com/sagnik81599/studysphere)**
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" />
+<img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white" />
+<img src="https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white" />
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white" />
 
+<br/><br/>
+
+- **Subject Notes Hub:** Browse, preview, and download subject-wise PDF notes.
+- **Timed Quizzes:** Interactive test module with automated scoring and performance metrics.
+- **Gamification:** Competitive student leaderboard and integrated video tutorials.
+- **Secure Database:** Robust MySQL backend for student records and file management.
+
+<br/>
+
+🔗 **[Explore Repository →](https://github.com/sagnik81599/studysphere)**
 
 </td>
 <td width="50%" valign="top">
 
-### 🌐 [Personal Portfolio Website](https://github.com/sagnik81599/My-Portfolio)
-A modern personal developer portfolio showcasing projects, experience, and contact details with dynamic typing and smooth 3D animations.
+### 🌐 Personal Portfolio Website
+> *3D Animated Interactive Developer Portfolio*
 
-- **Stack:** HTML5, CSS3, JavaScript
-- • Animated role introduction with interactive 3D cosmic background.
-- • Interactive project showcase, skills breakdown, and downloadable CV.
-- • Fully mobile-responsive layout and dark mode support.
-- 🔗 **[Explore Repository →](https://github.com/sagnik81599/My-Portfolio)**
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" />
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" />
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
+
+<br/><br/>
+
+- **3D Hero Banner:** Dynamic typing intro paired with 3D cosmic background.
+- **Project Showcase:** Comprehensive gallery of projects, tech stack, and interactive CV download.
+- **Responsive Design:** Mobile-first layout with smooth transitions and theme support.
+
+<br/><br/>
+
+🔗 **[Explore Repository →](https://github.com/sagnik81599/My-Portfolio)**
 
 </td>
 </tr>

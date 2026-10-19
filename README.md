@@ -76,7 +76,8 @@ A responsive educational platform enabling students to access, view, and downloa
 - • Developed a responsive platform enabling students to access, view, and download subject-wise notes, take tests, and earn digital certificates.
 - • Created a Test module with timed quizzes, auto-scoring, and performance tracking.
 - • Added leaderboard functionality and YouTube video links to support learning.
-- • Handled database integration for note files (PDF) and user records.
+- - 🔗 **[Explore Repository →](https://github.com/sagnik81599/studysphere)**
+
 
 </td>
 <td width="50%" valign="top">
